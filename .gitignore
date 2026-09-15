@@ -11,6 +11,9 @@
 npm-debug.log
 yarn-error.log
 
+# Local environment con API key de Gemini (nunca commitear)
+/src/environments/environment.development.ts
+
 # IDEs and editors
 .idea/
 .project

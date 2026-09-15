@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { Conversation } from './features/conversation/conversation';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  imports: [Conversation],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<app-conversation />',
 })
-export class App {
-  protected readonly title = signal('fala-comigo');
-}
+export class App {}

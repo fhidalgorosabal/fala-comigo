@@ -1,0 +1,19 @@
+import type { AppEnvironment } from './environment.type';
+
+/**
+ * PLANTILLA para desarrollo local.
+ *
+ * PASOS:
+ *   1. Copia este archivo como `environment.development.ts` en esta misma carpeta.
+ *   2. Reemplaza el valor de `apiKey` por tu clave real de Gemini.
+ *
+ * `environment.development.ts` está ignorado por git (ver .gitignore),
+ * así que tu clave nunca se commitea. Este `.example` SÍ se commitea.
+ */
+export const environment: AppEnvironment = {
+  production: false,
+  gemini: {
+    apiKey: 'REPLACE_WITH_GEMINI_API_KEY',
+    model: 'gemini-3.6-flash',
+  },
+};
