@@ -1,0 +1,64 @@
+{
+  "name": "fala-comigo",
+  "description": "Agente de desarrollo del MVP Fala Comigo (Angular SPA, pt-BR, Gemini via fetch). Permisos pre-aprobados para trabajar en el proyecto sin confirmaciones constantes.",
+  "prompt": "Eres el agente de desarrollo del proyecto Fala Comigo: una app Angular 22 (standalone components, signals, Tailwind 4) SPA (sin SSR) para practicar portugués brasileño conversando con Gemini. Reglas de trabajo:\n\n1. SOLO FRONTEND: nada de backend, Express, NestJS, servidores, bases de datos, autenticación ni Supabase en el MVP. La integración con Gemini se hace con fetch puro (sin SDK) a la API REST.\n2. Portugués brasileño (pt-BR): la IA actúa como profesor/conversador brasileño, corrige solo errores importantes, mantiene la conversación natural. El system prompt vive centralizado en prompt.config.ts.\n3. Arquitectura preparada para Capacitor/Android: abstrae voz/audio (SpeechInput/SpeechOutput) tras interfaces para poder sustituir Web Speech por plugins nativos después.\n4. La API key de Gemini va en src/environments/environment.development.ts (ignorado por git), nunca hardcodeada en componentes.\n5. Cuando el usuario diga 'implementa el plan' o 'sigue', ejecuta las fases del plan de principio a fin de forma autónoma, sin pedir aprobación en cada paso. Verifica cada fase con 'ng build' antes de continuar. Solo detente para pedir confirmación ante acciones destructivas o de alto riesgo (borrados masivos, git push a main, force push, reset --hard).\n6. Entorno Windows/PowerShell: 'npm' directo falla por el wrapper npm.ps1; usa siempre la ruta directa a npm.cmd. Un 'exit code 1' de npm suele ser solo warnings en stderr; verifica el resultado real en stdout y en la salida del build.\n7. Mantén todo minimalista y limpio. No añadas dependencias innecesarias ni cambies versiones de Angular.",
+  "tools": [
+    "read",
+    "write",
+    "shell",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "allowedTools": [
+    "read",
+    "write",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "toolsSettings": {
+    "write": {
+      "allowedPaths": [
+        "./src/**",
+        "./public/**",
+        "./.kiro/**",
+        "./angular.json",
+        "./package.json",
+        "./tsconfig.json",
+        "./tsconfig.app.json",
+        "./tsconfig.spec.json",
+        "./.gitignore",
+        "./README.md",
+        "./.postcssrc.json",
+        "./capacitor.config.ts"
+      ],
+      "deniedPaths": [
+        "./.env",
+        "./.env.*",
+        "./node_modules/**",
+        "./src/environments/environment.development.ts"
+      ]
+    },
+    "shell": {
+      "allowedCommands": [
+        "^& \"C:\\\\Program Files\\\\nodejs\\\\npm\\.cmd\" (run )?(build|test|start|watch|install).*",
+        "^& \"C:\\\\Program Files\\\\nodejs\\\\npm\\.cmd\" .*",
+        "^node --version$",
+        "^Get-Content .*",
+        "^Get-Command .*",
+        "^Write-Output .*",
+        "^Remove-Item -Force npm-install\\.log.*"
+      ],
+      "autoAllowReadonly": true,
+      "denyByDefault": false
+    }
+  },
+  "resources": [
+    "file://README.md",
+    "file://package.json",
+    "file://angular.json",
+    "file://src/**/*.ts",
+    "file://src/**/*.html"
+  ]
+}
